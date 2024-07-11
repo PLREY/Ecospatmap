@@ -7,7 +7,7 @@ The shiny web app was developped under the v.1.7.5 (*Chang et al., 2023*) and is
 
 In this respository you can find the code and data used to produce [Ecospatmap](https://ecospatmap.unil.ch/)
 
-* categories: all TIFF format used to vizualize all individual Nature's Contributions to People (NCP) predicted from species distribution models (SDM). Here, you have NCPs predictions for current and future conditions for three different approaches.
+* categories: For the DEMO, we only loaded 66/315 files available on the website. These ratsers (TIFF format) are used to vizualize all individual Nature's Contributions to People (NCP) predicted from species distribution models (SDM) for current period and also for future conditions for three different approaches.
 
 * SR: all TIFF format used to vizualize Species Richness prediction for current and future conditions (using binarized outputs)
 
