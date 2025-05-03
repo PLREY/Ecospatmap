@@ -20,7 +20,6 @@
 #   
 
 #wd<-"/home/shiny/" # Working directory by default
-setwd("C:/Users/prey3/Switchdrive/THESE_PL/40_Ecospat_maps/Example_app/")
 
 #
 ### Import packages
@@ -51,10 +50,11 @@ library(thematic) #Unified and Automatic 'Theming' of 'ggplot2', 'lattice', and 
 lf<-as.data.frame(data.table::fread("lf.csv"))
 lf.sr<-as.data.frame(data.table::fread("lf-sr.csv"))
 
+# If you want adding a restricted access
 credentials <- data.frame(
   user = c("author", "reviewer"), # mandatory
   password = c("pass1", "pass2"), # mandatory
-  start = c("2023-05-24"), # optinal (all others)
+  start = c("2023-05-24"), # optional (all others)
   expire = c(NA, "2024-12-31"),
   admin = c(TRUE, FALSE),
   comment = "Simple and secure authentification mechanism 
@@ -106,20 +106,15 @@ ui <- fluidPage(
     
     # Define the content of the dashboard body for each item (and sub-items) defined above
     dashboardBody(
-      
-      #includeCSS("www/Style-background-home2.css"), # background image in the body part
-      
+       
       tabItems(
         # 'home' section
         tabItem(tabName = "home",
-                # specific markdown document with text was created to avoid 'polluting' the script
+                # specific html document containing text was created to avoid 'polluting' the script
                 includeHTML("www/home2.html"),
                 includeCSS("www/Style-home2.css"),
                 tags$img(src = "www/images/tourism-aravis.jpg", style = 'position: end')
-                
-                #setBackgroundImage(src = "www/images/first-light.jpg"),
-                
-                #Markdown("www/home.md")
+                                
         ),
         
         # 'Species Richness map' section
@@ -208,7 +203,7 @@ ui <- fluidPage(
 
 
 # Wrap your UI with secure_app
-ui <- secure_app(ui)
+# ui <- secure_app(ui)
 
 #
 ##
@@ -220,7 +215,7 @@ server <- function(input, output) {
   
   # call the server part
   # check_credentials returns a function to authenticate users
-  res_auth <- secure_server(check_credentials = check_credentials(credentials))
+  # res_auth <- secure_server(check_credentials = check_credentials(credentials))
   
   #
   ### For indNCP panel
@@ -251,7 +246,7 @@ server <- function(input, output) {
   
   # Generate a Download button of the requested variable
   output$downloadMap <- downloadHandler(
-                          filename = function() {paste0(input$ncp,"_",input$t.sce,"_",input$meth,"_Rey-et-al-2024.tif")},
+                          filename = function() {paste0(input$ncp,"_",input$t.sce,"_",input$meth,"_Rey-et-al-2025.tif")},
                           content = function(file) {terra::writeRaster(terra::rast(formulaText()),file, overwrite=TRUE)}
                           )
   
